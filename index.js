@@ -10,5 +10,5 @@ app.get("/", (req, res) => {
 let PORT = 8000
 
 app.listen(PORT, (req, res) => {
-    console.log(`Server start on localhost:${PORT}`)
+    console.log(`Server start on. localhost:${PORT}`)
 })
