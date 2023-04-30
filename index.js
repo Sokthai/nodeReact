@@ -1,6 +1,14 @@
-stock$Online43023!
+const express = require("express")
+const app = express()
 
-q1 cartoon
-a1 tomAndJerry
 
-schwab.com
+app.get("/", (req, res) => {
+    res.send({greeting: "welcome"})
+})
+
+
+let PORT = 8000
+
+app.listen(PORT, (req, res) => {
+    console.log(`Server start on localhost:${PORT}`)
+})
