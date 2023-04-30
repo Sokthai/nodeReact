@@ -1,6 +1,9 @@
 const express = require("express")
 const app = express()
+const dbConnect = require("./config/db")
 
+
+dbConnect()
 
 app.get("/", (req, res) => {
     res.send({greeting: "welcome"})

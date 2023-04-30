@@ -1,12 +1,14 @@
 const mongoose = require("mongoose")
-const config = require("config")
-const keys = config.get("./keys")
+// const config = require("config")
+const keys = require("./keys")
 
 
 
 let dbConnect = async () =>{
     try {
-        await mongoose.connect(dbURI)
+        await mongoose.connect(keys.mongooseURI, {
+            useNewUrlParser: true
+        })
         console.log("Mongoose connected...")
     } catch (error) {
         console.error(error)
