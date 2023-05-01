@@ -26,14 +26,14 @@ const UserSchema = new mongoose.Schema({
         type: String,
         required: true
     },
-    dataOfBirth:{
+    dateOfBirth:{
         type: String,
         required: true
     },
     date:{
         type: Date,
-        default: date()
+        default: Date.now
     }
 })
 
-module.exports = mongoose.model("user", UserSchema)
+module.exports = User = mongoose.model("user", UserSchema)
