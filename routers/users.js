@@ -24,26 +24,26 @@ router.get("/", async (req, res) => {
 // @access  Private
 router.post("/", auth, async (req, res) => {
     try {
-        console.log(req.body)
         
         
 
         const {firstname, lastname, username, avatar, email, password, dateOfBirth} = req.body
-        let duplicateEmail = await User.findOne({"email" : email})
-        console.log(duplicateEmail)
+        let user = await User.findOne({"email" : email})
         
-        if (duplicateEmail){
+        
+        if (user){
             return res.status(400).json({error : [{msg : email + " is already exist"}]})
         }
-        let user = new User({firstname, lastname, username, avatar, email, password, dateOfBirth})
-        let salt = await bcrypt.genSaltSync(21);
+        user = new User({firstname, lastname, username, avatar, email, password, dateOfBirth})
+        let salt = bcrypt.genSaltSync(21);
         let hashPassword = await bcrypt.hash(password, salt);
         
+        console.log(user)
 
 
         user.password = hashPassword
         await user.save()
-        res.status(200).json(firstname)
+        return res.status(200).json(user)
     } catch (error) {
         console.log("post user: " + error)
         res.status(500).json({error: [{msg: "post user server error"}]})
