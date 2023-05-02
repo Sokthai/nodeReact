@@ -10,6 +10,7 @@ app.get("/", (req, res) => {
 })
 
 app.use('/users', require("./routers/users"))
+app.use('/profile', require("./routers/users"))
 
 
 let PORT = 8010
