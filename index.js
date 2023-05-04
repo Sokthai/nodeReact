@@ -10,7 +10,7 @@ app.get("/", (req, res) => {
 })
 
 app.use('/users', require("./routers/users"))
-app.use('/profile', require("./routers/users"))
+app.use('/profile', require("./routers/profile"))
 
 
 let PORT = 8010
@@ -18,3 +18,4 @@ let PORT = 8010
 app.listen(PORT, (req, res) => {
     console.log(`Server start on. localhost:${PORT}`)
 })
+//645131cfd1ecb17f512f23b0

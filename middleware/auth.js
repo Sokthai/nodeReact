@@ -6,13 +6,15 @@ const bcryt = require("bcryptjs")
 const auth = async (req, res, next) => {
     const {email, password} = req.body
     try {
-        let user = await User.findOne({email})
+        let user = await User.findOne({email}).select("id").select("password")
         if (!user){
             return res.status(404).json({error: [{msg: "user or password is incorrect"}]})
         }
         if (!bcryt.compareSync(password, user.password)){
             return res.status(404).json({error: [{msg: "user or password is incorrect--"}]})
         }
+        req.user = user._id
+
         next()
     } catch (error) {
         console.log(error)
