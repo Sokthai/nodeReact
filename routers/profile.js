@@ -26,9 +26,6 @@ router.post("/", [
 ], async (req, res) => {
     try {
         
-
-
-
         const {phone, street, city, state, zipcode, question1, question2, question3, answer1, answer2, answer3} = req. body
         const id = req.user
         const profileFields = {    
