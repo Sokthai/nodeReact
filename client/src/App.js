@@ -1,3 +1,5 @@
+import Register from "./components/RegisterForm";
+
 
 function App() {
   return (
@@ -10,6 +12,7 @@ function App() {
 
           Learn React
         </a>
+        {/* <Register/> */}
       </header>
     </div>
   );

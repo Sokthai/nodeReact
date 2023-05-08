@@ -1,9 +1,12 @@
 import React, {Fragment} from 'react'
+import { useDispatch } from 'react-redux'
 import {Link} from 'react-router-dom'
 
 
 
 const User = (props) => {
+
+    const dispatch = useDispatch()
 const {firstname, lastname, username, avatar, email, dateOfBirth, date} = props.value
 return (
    <Fragment>
