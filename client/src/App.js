@@ -1,25 +1,20 @@
 import logo from './logo.svg';
 import Register from '../src/components/RegisterForm'
 
+import Store from './app/store'
+import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
+import Landing from './components/Landing'
+import Profile from './components/Profile'
+
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-        <Register/>
-      </header>
-    </div>
+      <Router>
+        <Routes>
+            <Route exact path='/' element={<Landing />}/>
+            <Route exact path='/register/user' element={<Register/>}/>
+            <Route exact path='/register/profile' element={<Profile/>}/>
+        </Routes>
+      </Router>
   );
 }
 

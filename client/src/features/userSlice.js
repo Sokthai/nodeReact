@@ -1,5 +1,6 @@
 import {createSlice} from '@reduxjs/toolkit'
-
+import { useDispatch } from 'react-redux'
+import axios from 'axios'
 
 const initialState = {
     user : [{
@@ -9,7 +10,11 @@ const initialState = {
     }],
     amount : 1
 }
-export const userSlice = createSlice({
+
+
+
+export const userSlice = (formData) => createSlice({
+    
     name: 'user',
     initialState,
     reducers : {
@@ -20,11 +25,13 @@ export const userSlice = createSlice({
             state.amount += 1
         },
         user : (state, {payload})  => {
+            // const config = { headers : {'Content-Type:' : 'application/json'}}
+            // let user = axios.post('/users', formData, config)
             state.user = payload
         }
 
     }
 })
 
-export const {increment, decrement, user} = userSlice.actions //generate action creator
+export const {increment, decrement, user} = userSlice().actions //generate action creator
 export default userSlice.reducer

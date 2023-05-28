@@ -1,0 +1,35 @@
+body{
+    background-color: green;
+}
+
+.form-group{
+    align-items: center;
+    size: 30px;
+    border: 1px solid red;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.form-group input[type=text]{
+    border: 1px solid yellow;
+    
+    
+}
+
+.form-group input{
+    width: 250px;
+    font-size: 20px;
+    text-align: left;
+}
+
+.form-input{
+    position: relative;
+    align-items: center;
+}
+
+.form-input input[type=submit]{
+    position: absolute;
+    right: 50%;
+    font-size: 15px;
+}
