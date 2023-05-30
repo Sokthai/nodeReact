@@ -92,7 +92,7 @@ router.get("/login", [
         console.log(user)
         
         if (!user){
-            return res.status(400).json({error : [{msg: "user not found"}]})
+            return res.status(400).json({error : [{msg: "user not found"}], status: 400})
         }
         if (!bcrypt.compareSync(password, user.password)){
             return res.status(404).json({error: [{msg: "user not found---"}]})
