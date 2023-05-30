@@ -88,6 +88,7 @@ router.get("/login", [
     try {
         
         const {email, password} = req.body
+        console.log(email)
         let user = await User.findOne({email})//.select("-password")
         console.log(user)
         
@@ -95,7 +96,7 @@ router.get("/login", [
             return res.status(400).json({error : [{msg: "user not found"}], status: 400})
         }
         if (!bcrypt.compareSync(password, user.password)){
-            return res.status(404).json({error: [{msg: "user not found---"}]})
+            return res.status(404).json({error: [{msg: "password user not found---"}]})
         }
 
         res.status(200).json(user)
@@ -124,7 +125,7 @@ router.post("/", [
         }
         user = new User({firstname, lastname, username, avatar, email, password, dateOfBirth})
         var gravatarURL = gravatar.url(email, {s: "100", r: "pg", d: "mm"});
-
+        console.log(user)
         let salt = bcrypt.genSaltSync(10);
         var hash = bcrypt.hashSync(password, salt);
         user.password = hash

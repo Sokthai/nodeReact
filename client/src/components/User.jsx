@@ -1,13 +1,17 @@
 import React, {Fragment} from 'react'
-import { useDispatch } from 'react-redux'
+import { useDispatch, connect} from 'react-redux'
 import {Link} from 'react-router-dom'
-
 
 
 const User = (props) => {
     const {firstname, lastname, username, email, dateOfBirth, date, password, confirmPassword} = props.value
 
     const dispatch = useDispatch()
+
+
+
+
+
     return (
         <form className='form-input' onSubmit={e => props.onSubmit(e)}>
             <div className="form-group">
@@ -42,4 +46,9 @@ const User = (props) => {
         </form>
     )
 }
+
+
+
+
+
 export default User

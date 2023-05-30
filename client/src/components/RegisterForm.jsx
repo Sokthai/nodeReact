@@ -1,17 +1,18 @@
 import React , {Fragment, useState} from 'react'
 import User from './User'
-import {useSelector} from 'react-redux'
+import {useSelector, connect, useDispatch} from 'react-redux'
 import '../styling/form.css'
 import Button from '@mui/material/Button'
 import { matchPassword } from '../util/util'
 import Profile from './Profile'
 import { setAlert } from '../util/util'
 import { Link , useNavigate, redirect} from 'react-router-dom'
+import { decrement, increment, registerUser } from '../features/userSlice'
 
 
-const Register = () => {
-    const user = useSelector(state => state.user)
-    const amount = useSelector(state => state.amount)
+const Register = ({users, amount, status}) => {
+    // const user = useSelector(state => state.user)
+    // const amount = useSelector(state => state.amount)
     const navigate = useNavigate()
 
 
@@ -24,9 +25,6 @@ const Register = () => {
         confirmPassword : '',
         dateOfBirth : ''
     })
-
-    
-
 
     const [profileData, setProfileData] = useState({
         street:'', 
@@ -46,9 +44,17 @@ const Register = () => {
     const onChange = (e) => {setUserData({...userData, [e.target.name] : e.target.value})}
     const onChangeProfile = e => {setProfileData({...profileData, [e.target.name] : e.target.value})}
 
+    const dispatch = useDispatch()
+
     const onSubmit = async (e) => {
         e.preventDefault()
-        alert("registered")
+        
+        try {
+            dispatch(registerUser(userData))
+        } catch (error) {
+            console.log(error)
+        }
+
     }
 
     const onNext = async (e) => {
@@ -58,7 +64,8 @@ const Register = () => {
             // return navigate('/register/profile', {replace: true})
             // return redirect("/register/profile")
             
-            return <Profile value = {userData} profile={profileData} onChange={onChangeProfile} onSubmit={e => onSubmit(e)} title='Register'/>
+            // return <Profile value = {userData} profile={profileData} onChange={onChangeProfile} onSubmit={e => onSubmit(e)} title='Register'/>
+            return (<p>ok</p>)
         }else{
             // alert("mismatch")
             setAlert("password is not match")
@@ -68,7 +75,7 @@ const Register = () => {
     return(
 
         <Fragment>
-            <User  onChange = {onChange} onSubmit={e => onNext(e)} value = {userData} title = 'Next'/>
+            <User  onChange = {onChange} onSubmit={e => onSubmit(e)} value = {userData} title = 'Next'/>
         </Fragment>
     )
 
@@ -77,4 +84,14 @@ const Register = () => {
 }
 
 
-export default Register
+const mapStateToProps = (state) => {
+    return ({
+        users : state.user.users, 
+        amount : state.user.amount,
+        status : state.user.status
+    })
+}
+
+
+
+export default connect(mapStateToProps, {registerUser})(Register)
